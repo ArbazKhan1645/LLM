@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "924271561405",
+    "project_id": "llm-app-93388",
+    "storage_bucket": "llm-app-93388.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924271561405:android:335f708d57ce98fd0605d4",
+        "android_client_info": {
+          "package_name": "com.example.llm_video_shopify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABdok3tScGMC8UIP9fx4nQyGv9eh28O-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
