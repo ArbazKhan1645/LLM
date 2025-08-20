@@ -257,13 +257,13 @@ class VideoScriptController extends GetxController
       if (Get.arguments != null) {
         generatedScript.value = Get.arguments;
       } else {
-        final response = await apiService.sendMessage(
-          message:
-              'Generate a random piece of professional business advice to help users improve their proposals or client communications',
-        );
-        if (!_isDisposed) {
-          generatedScript.value = response;
-        }
+        // final response = await apiService.sendMessage(
+        //   message:
+        //       'Generate a random piece of professional business advice to help users improve their proposals or client communications',
+        // );
+        // if (!_isDisposed) {
+        //   generatedScript.value = response;
+        // }
       }
     } catch (e) {
       if (!_isDisposed) {

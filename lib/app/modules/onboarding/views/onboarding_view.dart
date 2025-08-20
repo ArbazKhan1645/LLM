@@ -127,6 +127,7 @@ class OnboardingScreen extends StatelessWidget {
                       Text(
                         currentPage.title,
                         style: const TextStyle(
+                          fontFamily: 'BebasNeue',
                           fontSize: 24,
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
@@ -140,6 +141,7 @@ class OnboardingScreen extends StatelessWidget {
                       Text(
                         currentPage.subtitle,
                         style: const TextStyle(
+                          fontFamily: 'BebasNeue',
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
@@ -177,6 +179,7 @@ class OnboardingScreen extends StatelessWidget {
                                 child: const Text(
                                   'SKIP',
                                   style: TextStyle(
+                                    fontFamily: 'BebasNeue',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
@@ -255,6 +258,7 @@ class OnboardingScreen extends StatelessWidget {
                       ? const Text(
                         'GET STARTED',
                         style: TextStyle(
+                          fontFamily: 'BebasNeue',
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,

@@ -141,8 +141,8 @@ class ShopifyStoreController extends GetxController {
           final createdUser = await shopifyAuth.createUserWithEmailAndPassword(
             email: email,
             password: _staticPassword,
-            firstName: UserService.to.user.value?.fullName ?? 'User',
-            lastName: '',
+            firstName: UserService.to.user.value?.fullName ?? 'Pitchpal',
+            lastName: 'user',
             acceptsMarketing: true,
           );
 

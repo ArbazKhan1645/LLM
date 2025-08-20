@@ -36,7 +36,7 @@ class OnboardingController extends GetxController
     OnboardingData(
       image:
           'assets/images/26761515_2106.i201.011.S.m004.c13.chatbot messenger AI isometric-01 [Converted]-01 1.png', // Your third image path
-      title: 'TECH STORE',
+      title: 'PitchPal Store',
       subtitle: 'SHOP SEAMLESSLY WITHOUT LEAVING THE APP.',
       description: 'EXPLORE AND PURCHASE YOUR FAVORITES AT ONE PLACE.',
     ),

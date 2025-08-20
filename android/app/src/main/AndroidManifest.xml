@@ -41,7 +41,7 @@
 
 
     <application
-        android:label="PitchPal LLM"
+        android:label="Pitch Different"
         android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"

@@ -39,8 +39,8 @@ class HomeController extends GetxController {
       route: '/recording',
     ),
     QuickAction(
-      id: 'tech_store',
-      title: 'TECH STORE',
+      id: 'PitchPal store',
+      title: 'PitchPal Store',
       subtitle: 'Boost your look on camera for maximum impact',
       icon: Icons.store_outlined,
       color: const Color(0xFF4A90E2),
@@ -96,7 +96,7 @@ class HomeController extends GetxController {
       case 'record_video':
         Get.to(() => ZapierChatbotWebView());
         break;
-      case 'tech_store':
+      case 'PitchPal store':
         Get.to(() => ProductListPage());
         break;
       default:

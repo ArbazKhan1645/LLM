@@ -13,12 +13,12 @@ class AuthentcationView extends GetView<AuthenticationController> {
   const AuthentcationView({super.key});
   @override
   Widget build(BuildContext context) {
-    return UserTypeSelectionScreen();
+    return AuthTypeSelectionScreen();
   }
 }
 
-class UserTypeSelectionScreen extends StatelessWidget {
-  const UserTypeSelectionScreen({Key? key}) : super(key: key);
+class AuthTypeSelectionScreen extends StatelessWidget {
+  const AuthTypeSelectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,138 +27,231 @@ class UserTypeSelectionScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          // Top blue section
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xFF4FC3F7), Color(0xFF29B6F6)],
+      body: Container(
+        child: SafeArea(
+          child: Column(
+            children: [
+              // Header Section
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff3bbaf1),
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                          color: Color(0xff3bbaf1).withOpacity(0.3),
+                          width: 2,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.fingerprint,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Welcome',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Choose how you want to get started',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black.withOpacity(0.9),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            child: SafeArea(
-              child: Center(
-                child: const Text(
-                  'Choose User Type',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+
+              // Content Cards
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // Sign In Card
+                      _buildAuthTypeCard(
+                        controller,
+                        false, // isSignUp = false for Sign In
+                        'Sign In',
+                        'Welcome back! Sign in to your account',
+                        Icons.login_rounded,
+                        const Color(0xFF4facfe),
+                        const Color(0xFF00f2fe),
+                      ),
+
+                      const SizedBox(height: 24),
+
+                      // Sign Up Card
+                      _buildAuthTypeCard(
+                        controller,
+                        true, // isSignUp = true for Sign Up
+                        'Sign Up',
+                        'New here? Create your account and join us',
+                        Icons.person_add_rounded,
+                        const Color(0xFFa8edea),
+                        const Color(0xFFfed6e3),
+                      ),
+
+                      const SizedBox(height: 40),
+
+                      // Continue Button
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        width: double.infinity,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: const Color(0xff3bbaf1),
+                          borderRadius: BorderRadius.circular(28),
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(28),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(28),
+                            onTap: () {
+                              Get.to(() => AuthView());
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  'CONTINUE',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    letterSpacing: 1.2,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.arrow_forward_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-          ),
 
-          // Content
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // User Type Cards
-                  _buildUserTypeCard(
-                    controller,
-                    UserType.user,
-                    'Regular User',
-                    'Access all features as a regular user',
-                    Icons.person,
-                  ),
-
-                  const SizedBox(height: 30),
-
-                  _buildUserTypeCard(
-                    controller,
-                    UserType.business,
-                    'Business User',
-                    'Access business features and tools',
-                    Icons.business,
-                  ),
-
-                  const SizedBox(height: 50),
-
-                  // Continue Button
-                  Container(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(() => AuthView());
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF4FC3F7),
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
-                      child: const Text(
-                        'CONTINUE',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1.0,
-                        ),
+              // Bottom decoration
+              Container(
+                height: 60,
+                margin: const EdgeInsets.symmetric(horizontal: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    3,
+                    (index) => Container(
+                      width: 8,
+                      height: 8,
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildUserTypeCard(
+  Widget _buildAuthTypeCard(
     AuthenticationController controller,
-    UserType type,
+    bool isSignUp,
     String title,
     String subtitle,
     IconData icon,
+    Color gradientStart,
+    Color gradientEnd,
   ) {
     return Obx(
       () => GestureDetector(
-        onTap: () => controller.selectUserType(type),
+        onTap: () {
+          if (isSignUp) {
+            controller.navigateToSignUp();
+          } else {
+            controller.navigateToSignIn();
+          }
+        },
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.all(20),
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+          padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color:
-                controller.selectedUserType.value == type
-                    ? const Color(0xFF4FC3F7).withOpacity(0.1)
-                    : Colors.grey.shade50,
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color:
-                  controller.selectedUserType.value == type
-                      ? const Color(0xFF4FC3F7)
-                      : Colors.grey.shade300,
+                  controller.isSignUp.value == isSignUp
+                      ? const Color(0xFF667eea)
+                      : Colors.transparent,
               width: 2,
             ),
-            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color:
+                    controller.isSignUp.value == isSignUp
+                        ? const Color(0xFF667eea).withOpacity(0.2)
+                        : Colors.black.withOpacity(0.1),
+                blurRadius: controller.isSignUp.value == isSignUp ? 20 : 10,
+                offset: const Offset(0, 8),
+              ),
+            ],
           ),
           child: Row(
             children: [
+              // Icon Container
               Container(
-                width: 60,
-                height: 60,
+                width: 70,
+                height: 70,
                 decoration: BoxDecoration(
-                  color:
-                      controller.selectedUserType.value == type
-                          ? const Color(0xFF4FC3F7)
-                          : Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    colors:
+                        controller.isSignUp.value == isSignUp
+                            ? [const Color(0xFF667eea), const Color(0xFF764ba2)]
+                            : [gradientStart, gradientEnd],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: gradientStart.withOpacity(0.3),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
-                child: Icon(icon, color: Colors.white, size: 30),
+                child: Icon(icon, color: Colors.white, size: 32),
               ),
-              const SizedBox(width: 15),
+
+              const SizedBox(width: 20),
+
+              // Text Content
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,31 +259,52 @@ class UserTypeSelectionScreen extends StatelessWidget {
                     Text(
                       title,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color:
-                            controller.selectedUserType.value == type
-                                ? const Color(0xFF4FC3F7)
-                                : Colors.black,
+                            controller.isSignUp.value == isSignUp
+                                ? const Color(0xFF667eea)
+                                : const Color(0xFF2d3748),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 6),
                     Text(
                       subtitle,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.grey.shade600,
+                        color: const Color(0xFF718096),
+                        fontWeight: FontWeight.w400,
+                        height: 1.4,
                       ),
                     ),
                   ],
                 ),
               ),
-              if (controller.selectedUserType.value == type)
-                const Icon(
-                  Icons.check_circle,
-                  color: Color(0xFF4FC3F7),
-                  size: 24,
+
+              // Selection Indicator
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  color:
+                      controller.isSignUp.value == isSignUp
+                          ? const Color(0xFF667eea)
+                          : Colors.transparent,
+                  border: Border.all(
+                    color:
+                        controller.isSignUp.value == isSignUp
+                            ? const Color(0xFF667eea)
+                            : const Color(0xFFe2e8f0),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
                 ),
+                child:
+                    controller.isSignUp.value == isSignUp
+                        ? const Icon(Icons.check, color: Colors.white, size: 16)
+                        : null,
+              ),
             ],
           ),
         ),

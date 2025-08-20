@@ -61,8 +61,8 @@ class SplashScreen extends StatelessWidget {
                 child: ScaleTransition(
                   scale: controller.logoScaleAnimation,
                   child: SizedBox(
-                    width: 100,
-                    height: 100,
+                    width: 160,
+                    height: 160,
                     child: Image.asset(
                       'assets/images/Frame 1000006451.png',
                       color: Colors.white,
@@ -87,8 +87,8 @@ class SplashScreen extends StatelessWidget {
                   child: const Text(
                     'PITCH DIFFERENT',
                     style: TextStyle(
-                      fontSize: 28,
-                          fontFamily: 'BebasNeue',
+                      fontSize: 32,
+                      fontFamily: 'BebasNeue',
                       fontWeight: FontWeight.w900,
                       color: Colors.white,
                       letterSpacing: 1.0,
@@ -111,10 +111,10 @@ class SplashScreen extends StatelessWidget {
                 child: const Text(
                   'Simple Tips, Smart Tech.',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontFamily: 'BebasNeue',
+                    fontSize: 20,
                     fontWeight: FontWeight.w400,
                     color: Colors.white,
-                    fontStyle: FontStyle.italic,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -141,9 +141,10 @@ class SplashScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Text(
-                    'CREATE. CONNECT. SHOP.',
+                    'BUILD. PITCH. WIN.',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontFamily: 'BebasNeue',
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
                       letterSpacing: 1.5,
